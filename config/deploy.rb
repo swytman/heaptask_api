@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:swytman/heaptask_api.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/heaptask-api'
+set :deploy_to, '/var/www/heaptask_api'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -22,7 +22,7 @@ set :pty,             true
 set :use_sudo,        false
 
 # Default value for :linked_files is []
-append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/puma.rb'
+append :linked_files, 'config/database.yml', 'config/secrets.yml'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'vendor/bundle', 'public/uploads'
@@ -35,6 +35,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
+set :assets_roles, []
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
@@ -79,7 +80,6 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-  after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
