@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  host: 198.199.109.47
+  username: heaptask
+  password: heap123task
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: heaptask_development
+
+production:
+  <<: *default
+  database: heaptask_production
+
