@@ -19,7 +19,11 @@ class AuthorizeApiRequest
   end
 
   def decoded_auth_token
-    @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
+    begin
+      @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
+    rescue
+      nil
+    end
   end
 
   def http_auth_header
