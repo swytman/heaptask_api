@@ -8,6 +8,6 @@ class ApplicationController < ActionController::API
     command = AuthorizeApiRequest.call(request.headers)
     @current_user = command.result
     Rails.logger.info( command.result)
-    render json: { error: command.errors}, status: 401 unless @current_user
+    render json: { errors: command.errors }, status: 401 unless @current_user
   end
 end

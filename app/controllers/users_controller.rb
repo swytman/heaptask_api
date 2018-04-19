@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       command = AuthenticateUser.call(user_params[:email], user_params[:password])
       render json: { auth_token: command.result }
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
