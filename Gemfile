@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bugsnag'
   gem 'rubocop'
   gem 'guard'
   gem 'guard-rubocop'
