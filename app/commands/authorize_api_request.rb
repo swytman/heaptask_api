@@ -19,19 +19,14 @@ class AuthorizeApiRequest
   end
 
   def decoded_auth_token
-    begin
-      @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
-    rescue
-      nil
-    end
+    @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
+  rescue StandardError
+    nil
   end
 
   def http_auth_header
-    if headers['Authorization'].present?
-      return headers['Authorization'].split(' ').last
-    else
-      errors.add(:token, 'missing token')
-    end
+    return headers['Authorization'].split(' ').last if headers['Authorization'].present?
+    errors.add(:token, 'missing token')
     nil
   end
 end

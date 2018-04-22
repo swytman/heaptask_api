@@ -1,0 +1,67 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Bundler:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'db/seeds/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
+    - 'test/**/*'
+    - 'test/test_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'node_modules/**/*'
+    - 'lib/report_generators/**/*'
+
+AlignParameters:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Layout/EndOfLine:
+  Enabled: false
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Documentation:
+  Enabled: false
