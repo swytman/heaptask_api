@@ -54,7 +54,7 @@ set :stage,           :production
 set :deploy_via,      :remote_cache
 server '198.199.109.47',
   user: 'swytman',
-  roles: %w{web app},
+  roles: %w{web app db},
   ssh_options: {
     user: 'swytman', # overrides user setting above
     keys: %w(/home/user_name/.ssh/id_rsa),
