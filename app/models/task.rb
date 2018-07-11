@@ -17,4 +17,9 @@ class Task < ApplicationRecord
   belongs_to :user
 
   validates :user_id, presence: true
+
+  def telegram_string
+    "#{name}: #{start} - #{self.end}"
+  end
+
 end

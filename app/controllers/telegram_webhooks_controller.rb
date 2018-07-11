@@ -1,6 +1,11 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
+  def tasks!(*)
+    tasks = Task.all
+    respond_with :message, text: tasks.map(&:telegram_string).join('\n')
+  end
+
   def start!(*)
     respond_with :message, text: t('.content')
   end
