@@ -52,16 +52,15 @@
 
 set :stage,           :production
 set :deploy_via,      :remote_cache
-server '198.199.109.47',
-  user: 'swytman',
-  roles: %w{web app db},
+server '192.241.202.217',
+  user: 'deploy',
+  roles: %w{wruby -veb app db},
   ssh_options: {
-    user: 'swytman', # overrides user setting above
-    keys: %w(/home/user_name/.ssh/id_rsa),
-    forward_agent: true,
-    auth_methods: %w(publickey password),
-    port: 17768
-    # password: "please use keys"
+     user: 'vs', # overrides user setting above
+     keys: %w(/home/vs/.ssh/id_rsa),
+     forward_agent: true,
+     auth_methods: %w(publickey password),
+     # password: "please use keys"
   }
 
 set :puma_threads,    [4, 16]

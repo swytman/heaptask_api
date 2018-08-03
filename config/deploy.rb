@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:swytman/heaptask_api.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/heaptask_api'
+set :deploy_to, '/www/heaptask_api'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
