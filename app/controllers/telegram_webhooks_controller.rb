@@ -7,6 +7,22 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     # respond_with :message, text: tasks.map(&:telegram_string).join('\n')
   end
 
+  def token!(*args)
+    if args.any?
+      token = args.join(' ')
+      command = AuthByTelegramToken.call(token, chat['id'])
+      user = command.result
+      if user
+        respond_with :message, text: t('.welcome', email: user.email)
+      else
+        respond_with :message, text: t('.bad')
+      end
+    else
+      respond_with :message, text: t('.prompt')
+      save_context :token!
+    end
+  end
+
   def start!(*)
     respond_with :message, text: t('.content')
   end
