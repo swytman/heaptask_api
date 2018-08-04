@@ -1,7 +1,7 @@
 ru:
   telegram_webhooks:
     token:
-      promt: "Пожалуйста, введите токен..."
+      prompt: "Пожалуйста, введите токен..."
       bad: "Неверный токен"
       welcome: "Привет, %{email}!"
 

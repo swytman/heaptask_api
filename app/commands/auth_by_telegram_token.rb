@@ -1,5 +1,6 @@
 class AuthByTelegramToken
   prepend SimpleCommand
+  attr_accessor :token, :chat_id
 
   def initialize(token, chat_id)
     @token = token
@@ -12,10 +13,8 @@ class AuthByTelegramToken
 
   private
 
-  attr_accessor :email, :password
-
   def user
-    user = User.by_telegram_token(token)
+    user = User.by_telegram_token(token).first
     if user
       user.update(telegram_chat_id: chat_id)
       return user
