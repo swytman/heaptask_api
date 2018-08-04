@@ -3,7 +3,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def tasks!(*)
     tasks = Task.all
-    respond_with :message, text: tasks.map(&:telegram_string).join('\n')
+    respond_with :message, text: chat['id']
+    # respond_with :message, text: tasks.map(&:telegram_string).join('\n')
   end
 
   def start!(*)
@@ -36,23 +37,23 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     else
       save_context :keyboard!
       respond_with :message, text: t('.prompt'), reply_markup: {
-          keyboard: [t('.buttons')],
-          resize_keyboard: true,
-          one_time_keyboard: true,
-          selective: true,
+        keyboard: [t('.buttons')],
+        resize_keyboard: true,
+        one_time_keyboard: true,
+        selective: true
       }
     end
   end
 
   def inline_keyboard!(*)
     respond_with :message, text: t('.prompt'), reply_markup: {
-        inline_keyboard: [
-            [
-                {text: t('.alert'), callback_data: 'alert'},
-                {text: t('.no_alert'), callback_data: 'no_alert'},
-            ],
-            [{text: t('.repo'), url: 'https://github.com/telegram-bot-rb/telegram-bot'}],
+      inline_keyboard: [
+        [
+          { text: t('.alert'), callback_data: 'alert' },
+          { text: t('.no_alert'), callback_data: 'no_alert' }
         ],
+        [{ text: t('.repo'), url: 'https://github.com/telegram-bot-rb/telegram-bot' }]
+      ]
     }
   end
 
@@ -74,13 +75,13 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     t_content = t('.content')
     results = Array.new(5) do |i|
       {
-          type: :article,
-          title: "#{query}-#{i}",
-          id: "#{query}-#{i}",
-          description: "#{t_description} #{i}",
-          input_message_content: {
-              message_text: "#{t_content} #{i}",
-          },
+        type: :article,
+        title: "#{query}-#{i}",
+        id: "#{query}-#{i}",
+        description: "#{t_description} #{i}",
+        input_message_content: {
+          message_text: "#{t_content} #{i}"
+        }
       }
     end
     answer_inline_query results

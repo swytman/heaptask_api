@@ -11,6 +11,7 @@
 #
 
 class User < ApplicationRecord
+  include TelegramProfile
   has_secure_password
 
   has_many :tasks, dependent: :destroy

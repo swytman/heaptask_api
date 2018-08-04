@@ -21,5 +21,4 @@ class Task < ApplicationRecord
   def telegram_string
     "#{name}: #{start} - #{self.end}"
   end
-
 end
