@@ -12,9 +12,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       token = args.join(' ')
       command = AuthByTelegramToken.call(token, chat['id'])
       user = command.result
-      respond_with :message, text: token
-      return
-      if user
+      if user.present?
         respond_with :message, text: t('.welcome', email: user.email)
       else
         respond_with :message, text: t('.bad')
