@@ -19,8 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      command = AuthenticateUser.call(user_params[:email], user_params[:password])
-      render json: { auth_token: command.result }
+      render json: AuthenticationSerializer.new(@user.result).as_json, stauts: :ok
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end

@@ -15,4 +15,3 @@ module TelegramProfile
     self.telegram_token = SecureRandom.hex(6)
   end
 end
-
